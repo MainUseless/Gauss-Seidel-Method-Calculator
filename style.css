@@ -1,0 +1,96 @@
+#equation-box{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.matrix {
+    height: 150px;
+    font: monospace;
+    font-size: 1rem;
+    resize: none;
+    white-space: nowrap;
+    overflow-y: auto;
+}
+
+input{
+    max-width: 50px;
+}
+
+.solution {
+    height: 150px;
+    width: 30px;
+    font: monospace;
+    font-size: 1rem;
+    resize: none;
+    white-space: nowrap;
+}
+
+button {
+    color: rgb(247, 247, 247);
+    margin-top: 10px;
+    border: 0;
+    border-radius: 0.12em;
+    background: rgb(72, 129, 134);
+    padding: 10px 20px 10px 20px;
+    transition: all 0.5s;
+    margin-bottom: 10px;
+}
+
+#button2{
+    background: #6d74ca;
+}
+
+button:hover:enabled {
+    background: rgba(255, 255, 255, 0.85);
+    color:#171b5a;
+}
+
+body{
+    height: 99%;
+    margin: 0;
+    background-color: #171b5a;
+    background-image: url(background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+    font-family: sans-serif;
+}
+
+div{
+    display: block;
+}
+
+.main{
+    color: #171b5a;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur(6px);
+    font-family: sans-serif;
+    padding: 15px;
+    max-width: 600px;
+    word-wrap: break-word;
+    text-align: center;
+    line-height: 1.6;
+    min-width: 300px;
+    margin-top:1.5em;
+}
+
+.fade {
+    opacity: 100;
+    transition: opacity 200ms ease-in-out;
+    animation: fadeInAnimation ease 1.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

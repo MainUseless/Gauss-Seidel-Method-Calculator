@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="code.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NV</title>
+</head>
+<body>
+    <div class="main">
+      <label id="title">Gauss – Seidel Method Calculator</label>
+      <div class="equation-box" type="number" required>
+        <textarea id="box" class="matrix" placeholder="Enter coefficients"></textarea>
+        <textarea id="solution" class="solution"></textarea>
+      </div>
+      <div>
+        <label id="title">Counter:</label>
+        <input id="counter" type="number" min="1" step="1" value="1" placeholder="NOE">
+        <label id="title">Seed:</label>
+        <input id="seed" type="number" min="0" step="1" value="0" placeholder="Seed">
+      </div>
+      <div id="buttons">
+          <button id="button1" value="calculate" onclick="calculate()">Calculate</button>
+          <button id="button2" type="reset" onclick="reset()">Reset</button>
+      </div>
+      <div id="answer"></div>
+    </div>
+</body>
+</html>
