@@ -1,22 +1,46 @@
 function calculate() {
-    var textArea = document.getElementById("box");
-    var arrayFromTextArea = textArea.value.split(/([' ','\n'])/).filter(item => item.trim() !== '').map(Number);
-    var tempMatrix=chunk(arrayFromTextArea);
+    removeAllChildNodes(document.getElementById("answer"))
+    let textArea = document.getElementById("box");
+    let arrayFromTextArea = textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
+    console.log(arrayFromTextArea);
+
+    for (let i=0 ; i<arrayFromTextArea.length ; i++)
+     if(isNaN(arrayFromTextArea[i])){
+        printOnPage("Input contains invalid characters");
+        return 1;
+     }
+
+    arrayFromTextArea=arrayFromTextArea.filter( value => !Number.isNaN(value));
+
+    console.log(arrayFromTextArea);
+
+    if(Math.sqrt(arrayFromTextArea.length) % 1 !== 0){
+     printOnPage("Matrix must be square")
+     return 1;
+    }
+    
+    let tempMatrix=chunk(arrayFromTextArea);
     textArea=document.getElementById("solution");
     arrayFromTextArea=textArea.value.split('\n').map(Number);
+    
+    if(arrayFromTextArea.length!=tempMatrix.length){
+        printOnPage("Missing constants")
+        return 1;
+    }
 
-    var Matrix=[];
-    var solutionBox=[];
+    let Matrix=[];
+    let solutionBox=[];
     for (let i=0 ; i<tempMatrix.length;i++)
     {
-     Matrix[findPlace(tempMatrix[i])]=tempMatrix[i];
+     if(findPlace(tempMatrix[i])===false){
+        printOnPage("Error in row "+(i+1));
+        return 1;
+     }
+     Matrix[findPlace(tempMatrix[i])]=tempMatrix[i]
      solutionBox[findPlace(tempMatrix[i])]=arrayFromTextArea[i];
     }
-    console.log(Matrix);
-    console.log(solutionBox);
     
-    removeAllChildNodes(document.getElementById("answer"))
-    printOnHtml(solution(Matrix,solutionBox));
+    solution(Matrix,solutionBox);
 }
 
 function removeAllChildNodes(parent) {
@@ -28,20 +52,22 @@ function removeAllChildNodes(parent) {
 function findPlace(matrix){
     for (let i=0 ; i<matrix.length;i++)
     {
-        if(matrix[i]>sumOf(matrix)-matrix[i])
+        if(matrix[i]>sumOfRow(matrix)-matrix[i])
          return i;
+        else if (matrix[i]==sumOfRow(matrix)-matrix[i])
+         return false ;
     }
 }
 
-function sumOf(matrix){
+function sumOfRow(matrix){
     let sum=0;
     for (let i=0 ; i<matrix.length ; i++)
      sum+=matrix[i];
     return sum;
 }
 
-function chunk (matrix) {
-    var chunks = [],
+function chunk(matrix) {
+    let chunks = [],
         i = 0;
         n = matrix.length;
         len=Math.sqrt(n);
@@ -54,17 +80,17 @@ function chunk (matrix) {
 
  function solution(M,S)
  {
-    var counter=document.getElementById("counter").value;
-    var seed=document.getElementById("seed").value;
-    var n = M.length;
-    var X = new Array(n).fill(seed); // Approximations
-    var P = new Array(n); // Prev
+    let counter=document.getElementById("counter").value;
+    let seed=document.getElementById("seed").value;
+    let n = M.length;
+    let X = new Array(n).fill(seed); // Approximations
+    let P = new Array(n); // Prev
 
     for (let k=0 ; k<counter ;k++) 
     {
         for (let i = 0; i < n; i++) 
         {
-            var sum = S[i]; // b_n
+            let sum = S[i]; // b_n
             for (let j = 0; j < n; j++)
                 if (j != i)
                     sum -= M[i][j] * X[j];
@@ -74,20 +100,23 @@ function chunk (matrix) {
         P = X;
     //    if (Math.abs(X[i] - P[i]) > epsilon) break;
     }
-    console.log(X);
-    return X;
-}
+    console.log(X.length);
+    console.log(n);
+    for(let i=0 ; i< X.length ; i++){
+        if(S.length!=n)
+        {
+            console.log("lol");
+            printOnPage("Input matrix contains some error")
+            return 1;
+        }
+        printOnPage("X"+(i+1)+" = "+X[i].toFixed(4));
+}}
 
-function printOnHtml(answer){
-  for (let j=0 ; j<answer.length ; j++)
-    answer[j]=answer[j].toFixed(4);
-  for (let i=0 ; i<answer.length ; i++)
-  {
-    var elm = document.getElementById( 'answer' ),
+function printOnPage(text){
+    let elm = document.getElementById( 'answer' ),
     div = document.createElement( 'div' );
-    div.textContent = "X"+(i+1)+" = "+answer[i];
+    div.textContent = text ;
     elm.appendChild( div );
-  }
 }
 
 function reset(){
