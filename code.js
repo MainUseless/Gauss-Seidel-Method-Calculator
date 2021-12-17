@@ -1,49 +1,50 @@
 function calculate() {
     removeAllChildNodes(document.getElementById("answer"))
-    let textArea = document.getElementById("box");
-    let arrayFromTextArea = textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
-    console.log(arrayFromTextArea);
+    let tempArray=getInputFrom("box");
 
-    for (let i=0 ; i<arrayFromTextArea.length ; i++)
-     if(isNaN(arrayFromTextArea[i])){
-        printOnPage("Input contains invalid characters");
-        return 1;
-     }
-
-    if(Math.sqrt(arrayFromTextArea.length) % 1 !== 0){
+    if(Math.sqrt(tempArray.length) % 1 !== 0){
      printOnPage("Matrix must be square")
      return 1;
     }
     
-    let tempMatrix=chunk(arrayFromTextArea);
+    let tempMatrix=chunk(tempArray);
+ 
+    tempArray=getInputFrom("solution");   //temp array that hold the solution box elements
+    console.log(tempArray);
+    console.log(tempMatrix);
 
-    textArea=document.getElementById("solution");
-    arrayFromTextArea=textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
-
-    for (let i=0 ; i<arrayFromTextArea.length ; i++)
-    if(isNaN(arrayFromTextArea[i])){
-       printOnPage("Solution contains invalid characters");
-       return 1;
-    }
-
-    if(arrayFromTextArea.length!=tempMatrix.length){
+    if(tempArray.length!=tempMatrix.length){
         printOnPage("Missing constants")
         return 1;
     }
 
     let Matrix=[];
     let solutionBox=[];
-    for (let i=0 ; i<tempMatrix.length;i++)
+    for (let i=0 ; i<tempMatrix.length;i++)       //to reorder the matrix 
     {
      if(findPlace(tempMatrix[i])===false){
         printOnPage("Error in row "+(i+1));
         return 1;
      }
      Matrix[findPlace(tempMatrix[i])]=tempMatrix[i]
-     solutionBox[findPlace(tempMatrix[i])]=arrayFromTextArea[i];
+     solutionBox[findPlace(tempMatrix[i])]=tempArray[i];
     }
-    
+    console.log(checkRepeat(Matrix));
+    if(checkRepeat(Matrix))
+      return 1;
     solution(Matrix,solutionBox);
+}
+
+function checkRepeat(matrix)
+{
+    for (let i=0 ; i<matrix.length ; i++)
+     for (let j=0 ; j<matrix.length ; j++){
+        console.log("lol");
+        if(i!=j)
+         if(finplace(matrix[i])==findPlace(matrix[j])){
+           printOnPage("Check rows "+(i+1)+" and "+(j+1));
+           return true ;}}
+    return false; 
 }
 
 function removeAllChildNodes(parent) {
@@ -52,14 +53,25 @@ function removeAllChildNodes(parent) {
     }
 }
 
+function getInputFrom(ID)
+{
+    let textArea = document.getElementById(ID);
+    let arrayFromTextArea = textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
+    for (let i=0 ; i<arrayFromTextArea.length ; i++)
+    if(isNaN(arrayFromTextArea[i])){
+       printOnPage("Input contains invalid characters");
+       return 1;
+    }
+    return arrayFromTextArea;
+}
+
 function findPlace(matrix){
     for (let i=0 ; i<matrix.length;i++)
     {
         if(matrix[i]>sumOfRow(matrix)-matrix[i])
          return i;
-        else if (matrix[i]==sumOfRow(matrix)-matrix[i])
-         return false ;
     }
+    return false ;
 }
 
 function sumOfRow(matrix){

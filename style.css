@@ -8,6 +8,11 @@
     border: #171b5a;
 }
 
+#instructions{
+   font-size: 0.8rem;
+   color: rgb(78, 78, 77);
+}
+
 #solution {
     height: 150px;
     width: 30px;
@@ -62,7 +67,7 @@ input{
 }
 
 .main{
-    color: #242424d0;
+    color: hsla(0, 0%, 0%, 0.87);
     background: rgba(112, 112, 112, 0.068);
     box-shadow: 0 8px 32px 0 rgba(46, 49, 80, 0.404);
     backdrop-filter: blur(8px);
