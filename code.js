@@ -10,19 +10,22 @@ function calculate() {
         return 1;
      }
 
-    arrayFromTextArea=arrayFromTextArea.filter( value => !Number.isNaN(value));
-
-    console.log(arrayFromTextArea);
-
     if(Math.sqrt(arrayFromTextArea.length) % 1 !== 0){
      printOnPage("Matrix must be square")
      return 1;
     }
     
     let tempMatrix=chunk(arrayFromTextArea);
+
     textArea=document.getElementById("solution");
-    arrayFromTextArea=textArea.value.split('\n').map(Number);
-    
+    arrayFromTextArea=textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
+
+    for (let i=0 ; i<arrayFromTextArea.length ; i++)
+    if(isNaN(arrayFromTextArea[i])){
+       printOnPage("Solution contains invalid characters");
+       return 1;
+    }
+
     if(arrayFromTextArea.length!=tempMatrix.length){
         printOnPage("Missing constants")
         return 1;
@@ -80,6 +83,7 @@ function chunk(matrix) {
 
  function solution(M,S)
  {
+    console.log(S);
     let counter=document.getElementById("counter").value;
     let seed=document.getElementById("seed").value;
     let n = M.length;
@@ -103,9 +107,8 @@ function chunk(matrix) {
     console.log(X.length);
     console.log(n);
     for(let i=0 ; i< X.length ; i++){
-        if(S.length!=n)
+        if(X.length!=n)
         {
-            console.log("lol");
             printOnPage("Input matrix contains some error")
             return 1;
         }

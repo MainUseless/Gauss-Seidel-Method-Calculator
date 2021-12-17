@@ -1,23 +1,21 @@
-.matrix {
+#box {
     height: 150px;
     font: monospace;
     font-size: 1rem;
     resize: none;
     white-space: nowrap;
     overflow-y: auto;
+    border: #171b5a;
 }
 
-input{
-    max-width: 50px;
-}
-
-.solution {
+#solution {
     height: 150px;
     width: 30px;
     font: monospace;
     font-size: 1rem;
     resize: none;
     white-space: nowrap;
+    border: #171b5a;
 }
 
 button {
@@ -56,6 +54,11 @@ body{
 
 div{
     display: block;
+}
+
+input{
+    max-width: 50px;
+    border: #171b5a;
 }
 
 .main{

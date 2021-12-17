@@ -12,14 +12,14 @@
     <div class="main">
       <label id="title">Gauss – Seidel Method Calculator</label>
       <div>
-        <textarea id="box" class="matrix" placeholder="Enter coefficients"></textarea>
-        <textarea id="solution" class="solution"></textarea>
+        <textarea id="box" placeholder="Enter coefficients"></textarea>
+        <textarea id="solution"></textarea>
       </div>
       <div>
         <label id="title">Iterations:</label>
-        <input type="number" min="1" max="1000" step="1" value="1">
+        <input type="number" id="counter" min="1" max="1000" step="1" value="1">
         <label id="title">Seed:</label>
-        <input type="number" min="0" max="1000" step="1" value="0">
+        <input type="number" id="seed" min="0" max="1000" step="1" value="0">
       </div>
       <div id="buttons">
           <button id="button1" onclick="calculate()">Calculate</button>
