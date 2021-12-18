@@ -16,19 +16,21 @@ function calculate() {
         return 1;
     }
 
-    let Matrix=[];
-    let solutionBox=[];
+    let Matrix = new Array(tempMatrix.length);
+    let solutionBox = new Array(tempMatrix.length).fill(-1);
     for (let i=0 ; i<tempMatrix.length;i++)       //to reorder the matrix 
     {
-     if(findPlace(tempMatrix[i])===false){
+    let index = findPlace(tempMatrix[i]) ;
+     if(index==-1){
         printOnPage("Error in row "+(i+1));
         return 1;
      }
-     Matrix[findPlace(tempMatrix[i])]=tempMatrix[i]
-     solutionBox[findPlace(tempMatrix[i])]=tempArray[i];
+     Matrix[index]=tempMatrix[i]
+     solutionBox[index]=tempArray[i];
     }
 
-    if(tempArray.length!=solutionBox.length)
+    for(let i=0 ; i<solutionBox.length ; i++)
+    if(solutionBox[i]==-1)
     {
         printOnPage("Input matrix contains some error")
         return 1;
@@ -60,7 +62,7 @@ function findPlace(matrix){
         if(matrix[i]>sumOfRow(matrix)-matrix[i])
          return i;
     }
-    return false ;
+    return -1 ;
 }
 
 function sumOfRow(matrix){
@@ -87,7 +89,7 @@ function chunk(matrix) {
     let counter=document.getElementById("counter").value;
     let seed=document.getElementById("seed").value;
     let n = M.length;
-    let X = new Array(n).fill(seed); // Approximations
+    let X = new Array(n).fill(parseInt(seed)); // Approximations
     let P = new Array(n); // Prev
 
     for (let k=0 ; k<counter ;k++) 
@@ -103,7 +105,7 @@ function chunk(matrix) {
         }
         P = X;
     //    if (Math.abs(X[i] - P[i]) > epsilon) break;
-    }
+    };
     for(let i=0 ; i< X.length ; i++)
         printOnPage("X"+(i+1)+" = "+X[i].toFixed(4));
 }
