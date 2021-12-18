@@ -10,8 +10,6 @@ function calculate() {
     let tempMatrix=chunk(tempArray);
  
     tempArray=getInputFrom("solution");   //temp array that hold the solution box elements
-    console.log(tempArray);
-    console.log(tempMatrix);
 
     if(tempArray.length!=tempMatrix.length){
         printOnPage("Missing constants")
@@ -29,22 +27,13 @@ function calculate() {
      Matrix[findPlace(tempMatrix[i])]=tempMatrix[i]
      solutionBox[findPlace(tempMatrix[i])]=tempArray[i];
     }
-    console.log(checkRepeat(Matrix));
-    if(checkRepeat(Matrix))
-      return 1;
-    solution(Matrix,solutionBox);
-}
 
-function checkRepeat(matrix)
-{
-    for (let i=0 ; i<matrix.length ; i++)
-     for (let j=0 ; j<matrix.length ; j++){
-        console.log("lol");
-        if(i!=j)
-         if(finplace(matrix[i])==findPlace(matrix[j])){
-           printOnPage("Check rows "+(i+1)+" and "+(j+1));
-           return true ;}}
-    return false; 
+    if(tempArray.length!=solutionBox.length)
+    {
+        printOnPage("Input matrix contains some error")
+        return 1;
+    }
+    solution(Matrix,solutionBox);
 }
 
 function removeAllChildNodes(parent) {
@@ -94,8 +83,7 @@ function chunk(matrix) {
   }
 
  function solution(M,S)
- {
-    console.log(S);
+ { 
     let counter=document.getElementById("counter").value;
     let seed=document.getElementById("seed").value;
     let n = M.length;
@@ -116,16 +104,9 @@ function chunk(matrix) {
         P = X;
     //    if (Math.abs(X[i] - P[i]) > epsilon) break;
     }
-    console.log(X.length);
-    console.log(n);
-    for(let i=0 ; i< X.length ; i++){
-        if(X.length!=n)
-        {
-            printOnPage("Input matrix contains some error")
-            return 1;
-        }
+    for(let i=0 ; i< X.length ; i++)
         printOnPage("X"+(i+1)+" = "+X[i].toFixed(4));
-}}
+}
 
 function printOnPage(text){
     let elm = document.getElementById( 'answer' ),
