@@ -1,7 +1,7 @@
 function calculate() {
     removeAllChildNodes(document.getElementById("answer"))
     let tempArray=getInputFrom("box");
-
+    console.log(tempArray);
     if(Math.sqrt(tempArray.length) % 1 !== 0){
      printOnPage("Matrix must be square")
      return 1;
@@ -46,8 +46,10 @@ function removeAllChildNodes(parent) {
 
 function getInputFrom(ID)
 {
+    var regex = /^[-+]?\d+$/;
     let textArea = document.getElementById(ID);
-    let arrayFromTextArea = textArea.value.split(/([' ','\n',/\D/g])/).filter(item => item.trim() !== '').map(Number);
+    let arrayFromTextArea = textArea.value.split(/([' ','\n',regex])/).filter(item => item.trim() !== '').map(Number);
+    console.log(arrayFromTextArea);
     for (let i=0 ; i<arrayFromTextArea.length ; i++)
     if(isNaN(arrayFromTextArea[i])){
        printOnPage("Input contains invalid characters");
