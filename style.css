@@ -8,9 +8,43 @@
     border: #171b5a;
 }
 
+#cover {
+    display: block;
+}
+
+#instruct{
+    display: none;
+}
+
+#logos{
+    display: flex;
+    max-width: 100px;
+    justify-content: space-between;
+}
+
+.image-wrapper {
+    max-width: 50%;
+}
+
+.scale-image {
+    width: 140px;
+    margin-left: 30%;
+    margin-top: 0;
+    margin: 0 auto;
+}
+
+.flex-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
 #instructions{
    font-size: 0.8rem;
    color: rgb(218, 218, 218);
+}
+
+#calculator{
+    display: none;
 }
 
 #solution {
@@ -55,10 +89,6 @@ body{
     place-items: center;
     font-family: sans-serif;
     font-weight: bold;
-}
-
-div{
-    display: block;
 }
 
 input{

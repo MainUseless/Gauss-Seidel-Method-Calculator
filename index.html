@@ -10,7 +10,33 @@
     <title>Numerical solver for linear systems</title>
 </head>
 <body>
-    <div class="main">
+    <div class="main fade" id="cover">
+      <div class="flex-wrapper">
+        <div class="image-wrapper">
+          <a><img src="cu.png" align="left" class="scale-image"></a>
+        </div>
+        <div class="image-wrapper">
+          <a><img src="fci.png" align="right" class="scale-image"></a>
+         </div>
+      </div>
+      <div class="title">About</div>
+      <p id="instructions">
+          This is a calculator for solving linear system <br/>
+          of equations using gauss-seidel method <br/>
+      </p>
+      <button id="button" onclick="Start()">Start</button>
+      <div class="title">Team members</div>
+      <p id="instructions">
+          Mostafa Hesham Allam - 20206126 - 7<br />
+          Abdulrahman Emad Ismail - 20206148 - 120<br />
+          Karim Amro Hamdy - 20206138 - 61 <br />
+      </p>
+      <div class="title">Under the supervision of</div>
+      <p id="instructions">Dr. Eng. Mostafa Reda A. El Tantawi</p>
+
+
+    </div>
+    <div class="main fade" id="calculator">
       <label id="title">Gauss – Seidel Method Calculator</label>
       <div>
         <textarea id="box" placeholder="Enter coefficients"></textarea>
@@ -26,15 +52,16 @@
           <button id="button1" onclick="calculate()">Calculate</button>
           <button id="button2" onclick="reset()">Reset</button>
       </div>
-      <div id="answer"></div>
+      <div class="fade" id="answer"></div>
     </div>
-    <div class="main">
-      <div>How to use</div>
-      <div id="instructions">
-       <div>Enter coefficients seperated by space,</div>
-       <div> constants in vertical box</div>
-       <div>Seed : Initial value of 1st iteration</div>
+    <div class="main fade" id="instruct">
+      <div class="instructions">How to use</div> 
+       <p id="instructions">Enter coefficients seperated by space, <br/> 
+       constants in vertical box <br/>
+       Seed : Initial value of 1st iteration <br/></p>
+       <button id="button" onclick="resetAll()">Back</button>
       </div>
+      <div></div>
     </div>
 </body>
 </html>
