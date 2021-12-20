@@ -134,6 +134,9 @@ function chunk(matrix) {
     for(let i=0 ; i< X.length ; i++){
         for(let j=0 ; j< X.length ; j++)
             {
+            if(i==j)
+             L[i]+=M[i][j]+"(0)";
+            else
              L[i]+=M[i][j]+"(X"+(j+1)+")";
             if(j+1!=X.length)
               L[i]+="+ ";
