@@ -69,7 +69,7 @@ button {
 }
 
 #button2{
-    background: hsl(4, 47%, 61%);
+    background: hsl(285deg 100% 59%);
 }
 
 button:hover:enabled {
@@ -97,7 +97,7 @@ input{
 }
 
 .main{
-    color: hsla(0, 0%, 0%, 0.87);
+    color: hsl(285deg 100% 59%);
     background: rgba(112, 112, 112, 0.068);
     box-shadow: 0 8px 32px 0 rgba(46, 49, 80, 0.404);
     backdrop-filter: blur(8px);

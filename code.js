@@ -4,6 +4,8 @@ function Start(){
     document.getElementById("instruct").style.display = "block";   
 }
 
+var NOD=4;
+
 function resetAll(){
     reset();
     document.getElementById("cover").style.display = "block";
@@ -135,22 +137,22 @@ function chunk(matrix) {
         for(let j=0 ; j< X.length ; j++)
             {
             if(i==j)
-             L[i]+=M[i][j]+"(0)";
+             L[i]+=M[i][j]+"{0}";
             else
-             L[i]+=M[i][j]+"(X"+(j+1)+")";
+             L[i]+=M[i][j]+"{x<sub>"+(j+1)+"</sub>}";
             if(j+1!=X.length)
               L[i]+="+ ";
             }
         //console.log(L[i]);
-        printOnPage("X"+(i+1)+" = "+"1/"+M[i][i]+" * ("+S[i]+" - ("+L[i]+")");}
+        printOnPage("x<sub>"+(i+1)+"</sub> = "+"<sup>1</sup>/<sub>"+M[i][i]+"</sub> * ("+S[i]+" - ["+L[i]+"])");}
     for(let i=0 ; i< X.length ; i++)  
-        printOnPage("X"+(i+1)+" = "+X[i].toFixed(4));
+        printOnPage("x<sub>"+(i+1)+ "</sub> = "+X[i].toFixed(NOD));
 }
 
 function printOnPage(text){
     let elm = document.getElementById( 'answer' ),
-    div = document.createElement( 'div' );
-    div.textContent = text ;
+    div = document.createElement('div');
+    div.innerHTML = text ;
     elm.appendChild( div );
 }
 
