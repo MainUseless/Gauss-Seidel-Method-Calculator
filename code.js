@@ -133,6 +133,7 @@ function chunk(matrix) {
     let L = new Array(n).fill(" ");
     //console.log(P);
     //console.log(X);
+    printOnPage("General formulas")
     for(let i=0 ; i< X.length ; i++){
         for(let j=0 ; j< X.length ; j++)
             {
@@ -145,6 +146,7 @@ function chunk(matrix) {
             }
         //console.log(L[i]);
         printOnPage("x<sub>"+(i+1)+"</sub> = "+"<sup>1</sup>/<sub>"+M[i][i]+"</sub> * ("+S[i]+" - ["+L[i]+"])");}
+    printOnPage("Solutions")
     for(let i=0 ; i< X.length ; i++)  
         printOnPage("x<sub>"+(i+1)+ "</sub> = "+X[i].toFixed(NOD));
 }
